@@ -11,3 +11,5 @@ httpx
 pytest
 pytest-asyncio
 psycopg[binary]
+pwdlib[argon2]
+PyJWT
