@@ -4,19 +4,29 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    # Application
     app_name: str = "FastAPI Payment API"
+    app_env: str = "development"
     debug: bool = True
 
+    # Database
     database_url: str
 
     postgres_user: str = "postgres"
     postgres_password: str = "postgres"
     postgres_db: str = "payment_db"
 
+    # JWT authentication
+    jwt_secret_key: str
+    jwt_algorithm: str = "HS256"
+    access_token_expire_minutes: int = 30
+
+    # Stripe
     stripe_secret_key: str = ""
     stripe_webhook_secret: str = ""
     stripe_price_id: str = ""
 
+    # Frontend URLs
     frontend_success_url: str = (
         "http://localhost:3000/payment/success"
     )
