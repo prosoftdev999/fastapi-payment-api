@@ -3,7 +3,8 @@ from sqlalchemy import text
 
 from app.api.routes.auth import router as auth_router
 from app.db.session import engine
-
+from app.api.routes.checkout import router as checkout_router
+from app.api.routes.webhooks import router as webhooks_router
 
 app = FastAPI(
     title="FastAPI Payment API",
@@ -15,6 +16,15 @@ app.include_router(
     prefix="/api/v1",
 )
 
+app.include_router(
+    checkout_router,
+    prefix="/api/v1",
+)
+
+app.include_router(
+    webhooks_router,
+    prefix="/api/v1",
+)
 
 @app.get("/")
 async def root() -> dict[str, str]:
